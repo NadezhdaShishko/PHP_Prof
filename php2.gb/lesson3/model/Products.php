@@ -8,22 +8,54 @@ class Products extends Model
     public $name;
     public $description;
     public $price;
+    public $property = [
+        'id' => false,
+        'name' => false,
+        'description' => false,
+        'price' => false
+    ];
 
     public function __construct($name = null, $description = null, $price = null)
     {
-        parent::__construct();
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
     }
 
-    public function insertProduct() {
-        $tableName = $this->getTableName();
-        $sql = "INSERT INTO {$tableName} (name, description, price) VALUES (:name, :description, :price)";
-        return $this->db->execute($sql, ['name' => $this->name, 'description' => $this->description, 'price' => $this->price]);
+    // public function setId($id)
+    // {
+    //     $this->property['id'] = true;
+    //     $this->id = $id;
+    // }
+ 
+    public function setName($name)
+    {
+        $this->property['name'] = true; 
+        $this->name = $name;
+    }
+ 
+    public function setDescription($description)
+    {
+        $this->property['description'] = true;
+        $this->description = $description;
+    }
+ 
+    public function setPrice($price)
+    {
+        $this->property['price'] = true;
+        $this->price = $price;
     }
 
-    public function getTableName() {
+    // public function property() {
+    //     $this->property['id'] = false;
+    //     $this->property['name'] = false;
+    //     $this->property['description'] = false;
+    //     $this->property['price'] = false;
+    // }
+
+    public static function getTableName() {
         return 'products';
     }
+
+
 }
