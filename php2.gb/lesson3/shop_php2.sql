@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 05 2019 г., 14:41
+-- Время создания: Июн 07 2019 г., 02:14
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.1.22
 
@@ -58,7 +58,12 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`) VALUES
 (4, 'Фишбургер', 'Булка с котлетой из рыбы', 90),
 (5, 'Картофель фри', 'Картофель брусочками, жареный во фритюре.', 45),
 (6, 'Картофель по-домашнему', 'Картофель дольками.', 52),
-(7, 'Пепси', 'Напиток газированный', 60);
+(7, 'Пепси', 'Напиток газированный', 60),
+(15, 'Кола', 'Напиток газированный', 60),
+(16, 'Кола', 'Напиток газированный', 60),
+(17, 'Лимонад', 'Напиток газированный', 60),
+(18, '7Up', 'Напиток газированный', 60),
+(19, '7Up', 'Напиток газированный', 60);
 
 -- --------------------------------------------------------
 
@@ -79,7 +84,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `login`, `pass`) VALUES
 (1, 'admin', 'admin'),
 (2, 'Люси', 'gavGav123'),
-(3, 'Люси', 'gavGav123');
+(4, 'Люси', 'gavGav123');
 
 --
 -- Индексы сохранённых таблиц
@@ -117,13 +122,13 @@ ALTER TABLE `basket`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
