@@ -47,9 +47,19 @@ class Db
         return $stmt;
     }
 
+    public function queryObject($sql, $params, $class) {
+        $stmt = $this->query($sql, $params);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
+        return $stmt->fetch();
+    }
+
     public function execute($sql, $params) {
         $this->query($sql, $params);
         return true;
+    }
+
+    public function lastInsertId() {
+        return $this->connection->lastInsertId();
     }
 
     public function queryOne($sql, $param = []) {
