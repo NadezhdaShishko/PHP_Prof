@@ -11,13 +11,15 @@ use app\model\Users;
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
-// $product = new Products("Пепси", "Напиток газированный", 60);
-// var_dump($product->insertProduct());
+$product = Products::getOne(16);
+$product->setName("Фанта");
 
-// $user = new Users("Люси", "gavGav123");
-// var_dump($user->insertUser());
+$product->save();
+// var_dump($product);
 
-$product = new Products();
-var_dump($product->getOne(11));
+// $product = new Products("7Up", "Напиток газированный", 60);
+// $product->save();
 
-var_dump($product->delete());
+// $product = Products::getOne(14);
+// $user = Users::getOne(5);
+// $user->delete();
