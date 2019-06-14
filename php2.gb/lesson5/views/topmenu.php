@@ -1,0 +1,23 @@
+<? if (\app\model\Users::isAuth()) : ?>
+    Добро пожаловать <?= $user; ?>!
+    <a href="?c=users&a=logout" id="logout">Выход</a>
+<?else:?>
+    <form method="post">
+        <input type="text" name="login">
+        <input type="password" name="pass">
+        <input type="submit" name="send" value="Войти">
+    </form>
+<?endif;?>
+
+<a href="/basket"></a>
+
+<? if (!\app\model\Users::isAuth()): ?>
+    <h2>Авторизация:</h2>
+    <form action="?c=users&a=user" method="post">
+        <input type="text" name="login" placeholder="Логин"><br>
+        <input type="password" name="pass" placeholder="Пароль"><br>
+        <input type="checkbox" name="save" id="save">
+        <label for="save">Сохранить пароль</label>
+        <input type="submit" name="send" value="Войти">
+    </form>
+<? endif; ?>
