@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<a href="/">Главная</a>
+<a href="/?c=product&a=catalog">Каталог</a>
+<a href="/?c=basket&a=index">Корзина</a><br>
+{{ topmenu | raw }}
+{{ content | raw }}
+</body>
+</html>
