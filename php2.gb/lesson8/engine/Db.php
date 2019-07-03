@@ -38,9 +38,9 @@ class Db
         );
     }
 
-    private function query($sql, $param) {
+    private function query($sql, $params) {
         $stmt = $this->getConnection()->prepare($sql);
-        $stmt->execute($param);
+        $stmt->execute($params);
         return $stmt;
     }
 
@@ -48,13 +48,14 @@ class Db
         $stmt = $this->query($sql, $params);
         $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
         $obj = $stmt->fetch();
-        if (!obj) {
-            throw  new \Exception("Нет такого товара!", 404);
+        if (!$obj) {
+            throw new \Exception("Нет такого товара!", 404);
         }
-        return $odj;
+        return $obj;
     }
 
     public function execute($sql, $params) {
+
         $this->query($sql, $params);
         return true;
     }
