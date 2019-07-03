@@ -37,12 +37,12 @@ class Basket extends DataEntity
         $this->properties['product_id'] = true;
     }
 
-    public function propertiesAllFalse()
-    {
-        $this->properties['id'] = false;
-        $this->properties['login'] = false;
-        $this->properties['pass'] = false;
-    }
+//    public function propertiesAllFalse()
+//    {
+//        $this->properties['id'] = false;
+//        $this->properties['login'] = false;
+//        $this->properties['pass'] = false;
+//    }
 
     public function getTableName()
     {
