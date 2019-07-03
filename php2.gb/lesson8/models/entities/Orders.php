@@ -75,18 +75,17 @@ class Orders extends DataEntity
         $this->properties['address'] = true;
     }
 
-    public function propertiesAllFalse() {
-        $this->properties['id'] = false;
-        $this->properties['id_user'] = false;
-        $this->properties['id_product'] = false;
-        $this->properties['subtotal'] = false;
-        $this->properties['discount'] = false;
-        $this->properties['total'] = false;
-        $this->properties['address'] = false;
-    }
+//    public function propertiesAllFalse() {
+//        $this->properties['id'] = false;
+//        $this->properties['id_user'] = false;
+//        $this->properties['id_product'] = false;
+//        $this->properties['subtotal'] = false;
+//        $this->properties['discount'] = false;
+//        $this->properties['total'] = false;
+//        $this->properties['address'] = false;
+//    }
 
-    public static function getTableName()
-    {
-        return "orders";
+    public function getTableName() {
+        return 'orders';
     }
 }
