@@ -48,13 +48,13 @@ class Users extends DataEntity
         $this->properties['hash'] = true;
     }
 
-    public function propertiesAllFalse()
-    {
-        $this->properties['id'] = false;
-        $this->properties['login'] = false;
-        $this->properties['pass'] = false;
-        $this->properties['hash'] = false;
-    }
+//    public function propertiesAllFalse()
+//    {
+//        $this->properties['id'] = false;
+//        $this->properties['login'] = false;
+//        $this->properties['pass'] = false;
+//        $this->properties['hash'] = false;
+//    }
 
     public static function getTableName()
     {
