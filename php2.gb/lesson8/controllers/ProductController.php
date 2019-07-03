@@ -1,16 +1,15 @@
 <?php
 namespace app\controllers;
 
-use app\engine\Request;
-use app\models\repositories\ProductRepository;
+use app\engine\App;
 
 class ProductController extends Controller
 {
     public function actionCatalog() {
-        $page = $_GET['page'] ?? 0;
+        $page = App::call()->request->getParams()['page'] ?? 0;
         $page++;
         $limit = $page * 5;
-        $products = (new ProductRepository())->getLimit(0, $limit);
+        $products = App::call()->productRepository->getLimit(0, $limit);
         echo $this->render(
             'catalog',
             [
@@ -20,10 +19,35 @@ class ProductController extends Controller
         );
     }
 
+    public function actionApiCatalog()
+    {
+        $page = App::call()->request->getParams()['page'] ?? 0;
+        $page++;
+        $limit = $page * 5;
+        $products = App::call()->productRepository->getLimit(0, $limit);
+
+        header('Content-Type: application/json');
+
+        echo json_encode([
+            'products' => $products,
+            'page' => $page
+        ], JSON_UNESCAPED_UNICODE);
+
+    }
+
+    public function actionIndex()
+    {
+        echo $this->render("index");
+    }
+
     public function actionCard()
     {
-        $id = (new Request())->getParams()['id'];
-        $product = (new ProductRepository())->getOne($id);
-        echo $this->render('card', ['product' => $product]);
+        $id = App::call()->request->getParams()['id'];
+        $product = App::call()->productRepository->getOne($id);
+        echo $this->render('card',
+            [
+                'product' => $product
+            ]
+        );
     }
 }
