@@ -6,6 +6,7 @@ namespace app\engine;
 use app\models\repositories\BasketRepository;
 use app\models\repositories\ProductRepository;
 use app\models\repositories\UserRepository;
+use app\models\repositories\OrderRepository;
 use app\traits\Tsingletone;
 
 /**
