@@ -11,7 +11,9 @@ $(document).ready(function(){
             data:{
                 id: id
             },
-            error: function() {alert('Что-то пошло не так...');},
+            error: function() {
+                alert('Что-то пошло не так...');
+            },
             success: function(answer){
                 {
                     $("#count").html(answer.count);
@@ -21,19 +23,20 @@ $(document).ready(function(){
     });
 });
 
-$(document).ready(function(){
-    $(".delete").on('click', function(){
+$(document).ready(function () {
+    $(".delete").on('click', function () {
         let id = $(this).attr('data-id');
-        // console.log(id);
         $.ajax({
-            url: "/basket/delete",
+            url: "/basket/delete/",
             type: "POST",
-            dataType : "json",
-            data:{
+            dataType: "json",
+            data: {
                 id: id
             },
-            error: function() {alert('Что-то пошло не так...');},
-            success: function(answer){
+            error: function () {
+                alert('error');
+            },
+            success: function (answer) {
                 {
                     $("#" + id).remove();
                     $("#count").html(answer.count);
