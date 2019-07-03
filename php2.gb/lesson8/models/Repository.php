@@ -19,7 +19,7 @@ abstract class Repository
     public function getOne($id) {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE id = :id";
-        return $this->db->queryObject($sql, ['id' => $id], $this->getEntityClass());
+        return $this->db->queryObject($sql, [":id" => $id], $this->getEntityClass());
     }
 
     public function getAll() {
@@ -60,7 +60,7 @@ abstract class Repository
         $sql = "INSERT INTO {$tableName} ({$columns}) VALUES ({$values})";
         $this->db->execute($sql, $params);
         $entity->id = $this->db->lastInsertId();
-        $entity->propertiesAllFalse();
+//        $entity->propertiesAllFalse();
     }
 
     public function update(DataEntity $entity) {
@@ -79,13 +79,14 @@ abstract class Repository
         $params[':id'] = $entity->id;
         $sql = "UPDATE {$tableName} SET {$columns} WHERE id = :id";
         $this->db->execute($sql, $params);
-        $entity->propertyFalse();
+//        $entity->propertiesAllFalse();
     }
 
-    public function delete(DataEntity $entity) {
-        $tableName = $this->getTableName();
+    public function delete(DataEntity $entity)
+    {
+        $tableName =$this->getTableName();
         $sql = "DELETE FROM {$tableName} WHERE id = :id";
-        return $this->db->execute($sql, ['id' => $entity->id]);
+        return $this->db->execute($sql, [":id" => $entity->id]);
     }
 
     public function save(DataEntity $entity) {
@@ -95,6 +96,9 @@ abstract class Repository
             $this->update($entity);
     }
 
+    /**
+     * @return mixed
+     */
     abstract public function getTableName();
 
     abstract public function getEntityClass();
