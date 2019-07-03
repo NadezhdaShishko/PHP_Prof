@@ -1,17 +1,24 @@
 <?php
 namespace app\controllers;
 
-use app\models\repositories\UserRepository;
-use app\engine\Request;
+use app\engine\App;
 
 class UserController extends Controller
 {
+    public function actionIndex()
+    {
+        $users = App::call()->userRepository->getAll();
+        echo $this->render("users", [
+            'users' => $users
+        ]);
+    }
+
     public function actionLogin() {
-        $request = new Request();
-        if (isset($_POST['send'])) {
-            $login = $request->getParams()['login'];
-            $pass = $request->getParams()['pass'];
-            if (!(new UserRepository())->auth($login, $pass)) {
+
+        if (isset(App::call()->request->getParams()['submit'])) {
+            $login = App::call()->request->getParams()['login'];
+            $pass = App::call()->request->getParams()['pass'];
+            if (!App::call()->userRepository->auth($login, $pass)) {
                 Die("Не верный пароль!");
             } else
                 header("Location: /");
@@ -20,7 +27,7 @@ class UserController extends Controller
     }
     public function actionLogout() {
         session_destroy();
-        setcookie("hash");
+//        setcookie("hash");
         header("Location: /");
         exit();
     }
