@@ -1,6 +1,8 @@
+<h2>Каталог:</h2> <br>
+
 <? foreach ($products as $product):?>
 
-    <a href="/product/card/?id=<?= $product['id'] ?>"><h2><?= $product['name'] ?></h2></a>
+    <h2><a href="/product/card/?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h2>
     <p><?= $product['description'] ?></p>
     <p>Стоимость: <?= $product['price'] ?> руб.</p>
 
