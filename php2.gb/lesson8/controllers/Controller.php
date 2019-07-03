@@ -1,13 +1,11 @@
 <?php
 
-
 namespace app\controllers;
 
 use app\interfaces\IRenderer;
-use app\models\repositories\UserRepository;
-use app\models\repositories\BasketRepository;
+use app\engine\App;
 
-abstract class Controller
+abstract class Controller implements IRenderer
 {
     private $action;
     private $defaultAction = 'index';
@@ -15,10 +13,6 @@ abstract class Controller
     private $useLayout = true;
     private $renderer;
 
-    /**
-     * Controller constructor.
-     * @param $renderer
-     */
     public function __construct(IRenderer $renderer)
     {
         $this->renderer = $renderer;
@@ -45,15 +39,10 @@ abstract class Controller
                 "layouts/{$this->layout}",
                 [
                     'content' => $this->renderTemplate($template, $params),
-                    'count' => (new BasketRepository())->getCountWhere('session_id', session_id()),
-                    'topmenu' => $this->renderTemplate('topmenu',
-                    [
-                        'auth' => (new UserRepository())->isAuth(),
-                        'username' => (new UserRepository())->getUserName()
-                    ]),
-                    
-                ]
-            );
+                    'count' => App::call()->basketRepository->getCountWhere('session_id', session_id()),
+                        'auth' => App::call()->userRepository->isAuth(),
+                        'username' => App::call()->userRepository->getUserName()
+                ]);
         } else {
             return $this->renderTemplate($template, $params);
         }
