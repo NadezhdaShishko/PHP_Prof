@@ -12,8 +12,7 @@ class OrderRepository extends Repository
         return Orders::class;
     }
 
-    public static function getTableName() {
+    public function getTableName() {
         return 'orders';
     }
-
 }
