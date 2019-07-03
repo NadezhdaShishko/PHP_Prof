@@ -1,5 +1,5 @@
 <?php
-/** @var \app\models\Products $product  */
+/** @var \app\models\entities\Products $product  */
 ?>
 
 <h2><?= $product->name ?></h2>
