@@ -49,12 +49,12 @@ class Products extends DataEntity
         $this->properties['price'] = true;
     }
 
-    public function propertiesAllFalse() {
-     $this->properties['id'] = false;
-     $this->properties['name'] = false;
-     $this->properties['description'] = false;
-     $this->properties['price'] = false;
-    }
+//    public function propertiesAllFalse() {
+//     $this->properties['id'] = false;
+//     $this->properties['name'] = false;
+//     $this->properties['description'] = false;
+//     $this->properties['price'] = false;
+//    }
 
     public static function getTableName()
     {
