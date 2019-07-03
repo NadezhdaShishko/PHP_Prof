@@ -11,7 +11,7 @@ class BasketController extends Controller
     public function actionIndex()
     {
         echo $this->render('basket', [
-            'products' => App::call()->BasketRepository->getBasket(session_id())
+            'products' => App::call()->basketRepository->getBasket(session_id())
         ]);
     }
 
@@ -28,19 +28,20 @@ class BasketController extends Controller
 
     public function actionDelete()
     {
+        //Прежде чем удалять, убедимся что сессия совпадает
         $id = App::call()->request->getParams()['id'];
+
         $basket = App::call()->basketRepository->getOne($id);
 
         if (session_id() == $basket->session_id) {
             App::call()->basketRepository->delete($basket);
 
             $count = App::call()->basketRepository->getCountWhere('session_id', session_id());
-            header('Content-Type: application/json');
+
             echo json_encode(['response' => 1, 'count' => $count]);
         } else
         {
-            echo json_encode(['response => 0']);
+            echo json_encode(['response' => 0]);
         }
-
     }
 }
